@@ -1,0 +1,16 @@
+# Первые 4 не закомментированные строки нужны для работы Rest
+RewriteEngine on
+# Если запрашиваемая в URL директория или файл существуют обращаемся к ним напрямую
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Если нет - перенаправляем запрос на index.php
+RewriteRule . index.php
+
+# Необходимы для нормальной работы CORS в браузере
+Header always set Access-Control-Allow-Origin: *
+# TODO: закомментировать в будущем
+Header always set Access-Control-Allow-Methods "POST, GET, PUT, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "X-Requested-With, content-type, Authorization, Charset, Origin, Host, Accept"
+
+# На всякий случай, не стал удалять
+# Header always set Access-Control-Allow-Credentials: "true"

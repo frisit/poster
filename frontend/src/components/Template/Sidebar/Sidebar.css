@@ -1,0 +1,19 @@
+.sidebar {
+    width: 16%;
+    height: 450px;
+    float: left;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.sidebar .createdBy {
+    margin-top: 40px;
+    float: bottom;
+    text-align: center;
+}
+
+.sidebar .createdBy p{
+    margin-bottom: 0;
+}
+
+
