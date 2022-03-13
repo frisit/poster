@@ -1,6 +1,7 @@
 ## Pet project for posting content into social networks
 
-Stack: Yii2, ReactJS
+Stack: Yii2(php 7.2), ReactJS
+Using: RestAPI, MySQL
 
 In the project directory, you can run:
 
