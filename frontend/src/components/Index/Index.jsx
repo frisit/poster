@@ -5,7 +5,7 @@ import axios from 'axios';
 class Index extends React.Component {
     render() {
         return (
-            <div class="index">
+            <div className="index">
                 <h1>Индекс</h1>
 
                 <p>Пока что не нужен, но пусть будет</p>

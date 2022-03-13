@@ -1,6 +1,6 @@
 import React from 'react';
-
 import axios from 'axios';
+import PROJECT_URL from '../Constants/global';
 
 class News extends React.Component {
     constructor(props) {
@@ -19,9 +19,11 @@ class News extends React.Component {
         };
     }
 
+    urlEndPoint = PROJECT_URL;
+
     getNews() {
         axios
-            .get("http://poster.local/news")
+            .get(this.urlEndPoint + "/news")
             .then(response => {
                 console.log(response)
                 this.setState(
@@ -48,8 +50,8 @@ class News extends React.Component {
 
     handleClickSentMessage() {
         axios
-            // .post("http://poster.local", { title: 'react', content: 'react', category: 'react' })
-            .post("http://poster.local/news", { title: 'react', content: 'react', category: 'react' })
+            // .post(this.urlEndPoint, { title: 'react', content: 'react', category: 'react' })
+            .post(this.urlEndPoint + "/news", {title: 'react', content: 'react', category: 'react'})
             .then(response => {
                 console.log(response);
             })
@@ -65,37 +67,41 @@ class News extends React.Component {
     }
 
     render() {
-        const { message } = this.state;
+        const {message} = this.state;
         return (
-            <div class="index">
+            <div className="index">
                 <h1>Записи</h1>
 
-                <button class="btn btn-primary" onClick={this.handleClickSentMessage}>Отправить сообщение</button>
-                <br /><br />
-                <div class="index">
+                <button className="btn btn-primary" onClick={this.handleClickSentMessage}>Отправить сообщение</button>
+                <br/><br/>
+                <div className="index">
                     <div>
-                        <hr />
-                        <p>id: {this.state.d_id}</p>
-                        <p>Title: {this.state.d_title}</p>
-                        <p>Content: {this.state.d_content}</p>
-                        <p>Category: {this.state.d_category}</p>
+                        <hr/>
+                        <p>id: {this.state.d_id}</p>
+                        <p>Title: {this.state.d_title}</p>
+                        <p>Content: {this.state.d_content}</p>
+                        <p>Category: {this.state.d_category}</p>
 
-                        <hr />
+                        <hr/>
                     </div>
 
                     <div>
-                        <table class="table table-bordered table-striped table-sm">
+                        <table className="table table-bordered table-striped table-sm">
                             <tbody>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>Title</td>
-                                    <td>Content</td>
-                                </tr>
-                                {
-                                    this.state.news.map((data) =>
-                                        <tr><td>{data.id} </td><td>{data.title} </td><td>{data.content}</td></tr>
-                                    )
-                                }
+                            <tr>
+                                <td>ID</td>
+                                <td>Title</td>
+                                <td>Content</td>
+                            </tr>
+                            {
+                                this.state.news.map((data) =>
+                                    <tr>
+                                        <td>{data.id} </td>
+                                        <td>{data.title} </td>
+                                        <td>{data.content}</td>
+                                    </tr>
+                                )
+                            }
 
                             </tbody>
                         </table>

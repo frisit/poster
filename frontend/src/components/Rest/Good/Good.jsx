@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import PROJECT_URL from '../../Constants/global';
 
-class Good extends React.Component
-{
+class Good extends React.Component {
 
-    handleClicAxiosMessage()
-    {
+    handleClicAxiosMessage() {
         axios
-            .post("http://poster.local/good", {}, {
+            .post(this.urlEndPoint + "good", {}, {
                 headers: {
                     Authorization: "Bearer fCEpKfg0K1YrSwN9dQy_",
                 }
@@ -36,11 +35,11 @@ class Good extends React.Component
             });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <h1>Good</h1>
-                <a href="" class="btn">Get message</a>
+                <a href="" className="btn btn-primary">Get message</a>
             </div>
         );
     }

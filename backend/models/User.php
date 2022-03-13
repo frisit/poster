@@ -9,6 +9,9 @@ use \yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     public const ROLE_MANAGER = 'manager';
+    public const ROLE_VISITOR = 'visitor';
+
+//    public $firstName;
 
     public static function tableName()
     {
@@ -56,7 +59,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getId()
     {
-
+        return $this->id;
     }
 
     public function getAuthKey()
@@ -67,6 +70,31 @@ class User extends ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
 
+    }
+
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 
 }

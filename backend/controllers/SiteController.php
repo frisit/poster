@@ -98,6 +98,8 @@ class SiteController extends CentralRestController
     */
     public function actionLogin()
     {
+
+
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         // инициализируется объект Login
         $model = new Login();
@@ -106,12 +108,15 @@ class SiteController extends CentralRestController
         if (Yii::$app->request->isPost) {
             // значение из POST запроса сохраняется в переменные phone и password
             // но данные не сохраняются в БД, а просто хранятся в объекте
-            $model->phone = $_POST['phone'];
-            $model->password = $_POST['password'];
+            $request = \Yii::$app->request->post();
+//            var_dump($request);
+
+            $model->email = $request['email'];
+            $model->password = $request['password'];
 
             // в переменную $user записывается найденный массив из класса User через статическую функцию
             $user = User::findOne([
-                'phone' => $model->phone
+                'email' => $model->email
             ]);
 
             // если не проходит валидация данных, то в ответ должен вернуться HTTP код 422
@@ -166,38 +171,22 @@ class SiteController extends CentralRestController
         // сохранение значения
         $user->save(false);
 
-        return 'You were successfully logged out';
+        return ['message' => 'You were successfully logged out'];
     }
 
-    public function actionGood()
+    public function actionGetToken()
     {
-
-        // берётся токен из заголовка
         $token = Yii::$app->request->headers->get('Authorization');
 
-        // обрезается строка с нуля и до 7 символа
-        $token = substr($token, 7);
+        $user = User::find()->where(['token' => substr($token, 7)])->one();
 
-        $user = User::find()->where(['token' => $token])->one();
-
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-        // return ['message' => 'Congratulations it is work!'];
-
-        
-        return $user->token ?? 'User is not found';
+        return 'Your users token is: ' . $user->token ?? 'User not found';
     }
 
-    public function actionGuest()
+    public function actionCheckAuth()
     {
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-        return ['message' => 'for not authentificated users'];
+        return ['message' => 'If yoy see this message, you is authorized'];
     }
-
-
-
-
 
 
 }

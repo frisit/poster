@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PROJECT_URL from '../../Constants/global';
 
 import AlertBlock from '../../UI/Blocks/AlertBlock/AlertBlock';
 
@@ -7,28 +8,30 @@ class Guest extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleClicAxiosMessage = this.handleClicAxiosMessage.bind(this)
+        this.handleClickAxiosMessage = this.handleClickAxiosMessage.bind(this)
+        this.handleClickFetchMessage = this.handleClickFetchMessage.bind(this)
 
         this.state = {
             message: []
         };
     }
 
+    urlEndPoint = PROJECT_URL;
 
-    handleClicFetchMessage() {
+    handleClickFetchMessage() {
         var requestOptions = {
             method: 'GET'
         };
 
-        fetch("http://poster.local/guest", requestOptions)
+        fetch(this.urlEndPoint + "/guest", requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
 
-    handleClicAxiosMessage() {
+    handleClickAxiosMessage() {
         axios
-            .post("http://poster.local/guest")
+            .post(this.urlEndPoint + "/guest")
             .then(response => {
                 console.log(response)
                 this.setState({
@@ -65,7 +68,7 @@ class Guest extends React.Component {
                 <button onClick={this.handleClicFetchMessage} className="btn btn-primary">Get message with fetch</button>
                 <br />
                 <br />
-                <button onClick={this.handleClicAxiosMessage} className="btn btn-primary">Get message with axios</button>
+                <button onClick={this.handleClickAxiosMessage} className="btn btn-primary">Get message with axios</button>
                 <br />
                 <br />
                 <div className="diff">

@@ -16,8 +16,8 @@ class Login extends ActiveRecord
     public function rules() 
     {
         return [
-            [['phone', 'password'], 'required'],
-            [['phone'], 'string', 'max' => 11],
+            [['email', 'password'], 'required'],
+            [['email'], 'email'],
             [['password'], 'string', 'max' => 255],
         ];
     }

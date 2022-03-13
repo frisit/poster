@@ -63,12 +63,17 @@ return [
                 'signup' => 'site/signup',
                 'login' => 'site/login',
                 'logout' => 'site/logout',
-                'good' => 'site/good',
-                'guest' => 'site/guest',
+                'get-token' => 'site/get-token',
+                'check-auth' => 'site/check-auth',
 
                 //попытка замутить active controller
                 'acon' => 'acon/index',
-                'acon/test' => 'acon/test'
+                'acon/test' => 'acon/test',
+
+                // app actions
+                // TODO: перевести в одиночный action следующие методы
+                'user-data' => 'app/user-data',
+
             ],
         ],
 //         Нужен ли этот параметр? Прость он уже указан в 16-17 строках

@@ -4,15 +4,17 @@
     float: left;
     margin-left: 3%;
     margin-right: 3%;
+    margin-bottom: 3%
 }
 
-.sidebar .createdBy {
-    margin-top: 40px;
+.sidebar .usersData {
+    margin-bottom: 15px;
+    margin-left: 15px;
     float: bottom;
-    text-align: center;
+    
 }
 
-.sidebar .createdBy p{
+.sidebar .usersData p{
     margin-bottom: 0;
 }
 

@@ -26,7 +26,7 @@ class CentralRestController extends Controller
         $behaviors['authenticator'] = [
             // 'class' => Bearer::className(), //работающий bearer
             'class' => BearerFilter::className(),
-            'except' => ['index', 'login', 'signup', 'guest', 'options']
+            'except' => ['index', 'login', 'signup', 'guest', 'options', 'user-data']
         ];
 
         return $behaviors;

@@ -71,20 +71,20 @@ class PostNews extends React.Component {
             <div>
                 {/* форму авторизации бери здесь getbootstrap.com/docs/4.5/components/forms */}
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Название</label>
                         <input
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             name="formName"
                             value={formName}
                             onChange={this.change}
                         />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Контент</label>
                         <input
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             name="formContent"
                             value={formContent}
@@ -92,17 +92,17 @@ class PostNews extends React.Component {
                         />
 
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>Категория</label>
                         <input
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             name="formCategory"
                             value={formCategory}
                             onChange={this.change}
                         />
                     </div>
-                    <button type="submit" class="btn btn-primary">Отправить</button>
+                    <button type="submit" className="btn btn-primary">Отправить</button>
                     <br />
                     <span>{success}</span>
                 </form>
