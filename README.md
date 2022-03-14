@@ -1,6 +1,7 @@
 ## Pet project for posting content into social networks
 
-Stack: Yii2, ReactJS
+Stack: Yii2(php 7.2), ReactJS
+Using: RestAPI, MySQL
 
 In the project directory, you can run:
 
@@ -16,4 +17,4 @@ You will also see any lint errors in the console.
 
 ### `yarn build`
 
-![poster](https://user-images.githubusercontent.com/58563551/157544605-f3403b22-1af8-477c-88c3-51eaf29db00b.png)
+![изображение](https://user-images.githubusercontent.com/58563551/158076794-6263d8fc-16db-4af8-8087-d6fff06cb024.png)
