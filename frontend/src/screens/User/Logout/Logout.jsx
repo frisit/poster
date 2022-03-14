@@ -5,7 +5,7 @@ class Logout extends React.Component
     render(){
         return(
             <div>
-                logout
+                <h1>Разлогиниться</h1>
             </div>
         );
     }

@@ -1,14 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import Index from './../../Index/Index';
-import News from './../../News/News';
-import Settings from './../../Settings/Settings';
-import SomeForm from './../../SomeForm/SomeForm';
-import UsersData from './../../App/UsersData';
-
+import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 
-import { NavLink } from 'react-router-dom';
+import UsersData from './../../App/UsersData';
 
 const Sidebar = () => {
 
@@ -18,33 +12,25 @@ const Sidebar = () => {
         <div className='sidebar'>
             <div className="usersData">
                 <UsersData />
-                {/* <p>Copywrit © {date.getFullYear()}</p> */}
             </div>
             <div className="list-group">
-                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/rest/guest'>
-                    Гость</NavLink>
-                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/rest/signup'>
+                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/user/signup'>
                     Регистрация</NavLink>
-                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/rest/login'>
+                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/user/login'>
                     Авторизация</NavLink>
-                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/rest/good'>
+                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/user/authorized'>
                     Для авторизованных</NavLink>
-                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/rest/logout'>
+                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/user/user-settings'>
+                    Настройки</NavLink>
+                <NavLink className="list-group-item list-group-item-action list-group-item-info" to='/user/logout'>
                     Выход</NavLink>
             </div>
             <br></br>
             <div className="list-group">
                 <NavLink exact className="list-group-item list-group-item-action" to='/'>Главная</NavLink>
-                {/* <NavLink className="list-group-item list-group-item-action" to='/index'>Индекс</NavLink> */}
-                <NavLink className="list-group-item list-group-item-action" to='/news'>Новости</NavLink>
-                <NavLink className="list-group-item list-group-item-action" to='/news-add'>Добавить новость</NavLink>
-                <NavLink className="list-group-item list-group-item-action" to='/settings'>Настройки</NavLink>
-                <NavLink className="list-group-item list-group-item-action" to='/some-form'>Какая-то форма</NavLink>
-                {/* <NavLink className="list-group-item list-group-item-action" to='/authmin'>Authmin минина</NavLink> */}
-                {/* <a href="https://getbootstrap.com/docs/4.5/components/alerts/" className="list-group-item list-group-item-action">
-                    Дока по бутстрапу
-                </a> */}
-                <a href="#" className="list-group-item list-group-item-action">Выход</a>
+                <NavLink className="list-group-item list-group-item-action" to='/news/index'>Новости</NavLink>
+                <NavLink className="list-group-item list-group-item-action" to='/news/add'>Добавить новость</NavLink>
+                <NavLink className="list-group-item list-group-item-action" to='/some-form'>Формы</NavLink>
             </div>
 
 

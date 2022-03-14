@@ -5,11 +5,10 @@
     margin-bottom: 20px;
 }
 
-.header p{
+.header span{
     font-size: 35px;
     padding-top: 8px;
-    margin: 0;
-    text-align: center;
+    margin: 0 0 0 3%;
     color:#fff;
     font-weight: 700;
 }

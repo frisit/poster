@@ -1,50 +1,40 @@
 import React from 'react';
-import Home from './../../Home/Home'
-import Index from './../../Index/Index'
-import News from '../../News/News';
-import Settings from '../../Settings/Settings';
-import NewsAdd from '../../NewsAdd/NewsAdd';
-
-import Guest from '../../Rest/Guest/Guest';
-import Signup from '../../Rest/Signup/Signup.jsx';
-import Login from '../../Rest/Login/Login';
-import Good from '../../Rest/Good/Good';
-import Logout from '../../Rest/Logout/Logout';
-
-import './Content.css';
 import { Route, BrowserRouter } from "react-router-dom";
-import SomeForm from '../../SomeForm/SomeForm';
-import Authmin from '../../Authmin/Authmin';
+import './Content.css';
+
+import Index from './../../../screens/Index/Index'
+import NewsIndex from '../../../screens/News/Index/NewsIndex';
+import NewsAdd from '../../../screens/News/Add/NewsAdd';
+import SomeForm from '../../../screens/SomeForm/SomeForm';
+
+import SignUp from '../../../screens/User/SignUp/SignUp';
+import Login from '../../../screens/User/Login/Login';
+import UserSettings from '../../../screens/User/UserSettings/UserSettings';
+import Authorized from '../../../screens/User/Authorized/Authorized';
+import Logout from '../../../screens/User/Logout/Logout';
 
 
 const Content = () => {
   return (
     <div className='content'>
-      <Route path='/' exact render={() => <Home />} />
-
-      <Route path='/index' render={() => <Index />} />
-
-      <Route path='/news' render={() => <News />} />
-
-      <Route path='/settings' render={() => <Settings />} />
+      <Route path='/' render={() => <Index />} />
 
       <Route path='/some-form' render={() => <SomeForm />} />
+      
+      <Route path='/news/index' render={() => <NewsIndex />} />
 
-      <Route path='/authmin' render={() => <Authmin />} />
-
-      <Route path='/news-add' render={() => <NewsAdd />} />
+      <Route path='/news/add' render={() => <NewsAdd />} />
 
 
+      <Route path='/user/user-settings' render={() => <UserSettings />} />
 
-      <Route path='/rest/guest' render={() => <Guest />} />
+      <Route path='/user/signup' render={() => <SignUp />} />
 
-      <Route path='/rest/signup' render={() => <Signup />} />
+      <Route path='/user/login' render={() => <Login />} />
 
-      <Route path='/rest/login' render={() => <Login />} />
+      <Route path='/user/authorized' render={() => <Authorized />} />
 
-      <Route path='/rest/good' render={() => <Good />} />
-
-      <Route path='/rest/logout' render={() => <Logout />} />
+      <Route path='/user/logout' render={() => <Logout />} />
     </div>
   )
 }

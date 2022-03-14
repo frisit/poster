@@ -8,7 +8,7 @@ import axios from 'axios';
 // import 'animate.css';
 // import 'react-notifications-component/dist/theme.css';
 
-import PROJECT_URL from '../../Constants/global';
+import PROJECT_URL from '../../../components/Constants/global';
 
 class Login extends React.Component {
     constructor(props) {

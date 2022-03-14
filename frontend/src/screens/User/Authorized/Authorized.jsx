@@ -1,12 +1,17 @@
 import React from 'react';
 import axios from 'axios';
-import PROJECT_URL from '../../Constants/global';
+import PROJECT_URL from '../../../components/Constants/global';
 
-class Good extends React.Component {
+class Authorized extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClicAxiosMessage = this.handleClicAxiosMessage.bind(this);
+
+    }
 
     handleClicAxiosMessage() {
         axios
-            .post(this.urlEndPoint + "good", {}, {
+            .post(PROJECT_URL + "/good", {}, {
                 headers: {
                     Authorization: "Bearer fCEpKfg0K1YrSwN9dQy_",
                 }
@@ -38,11 +43,11 @@ class Good extends React.Component {
     render() {
         return (
             <div>
-                <h1>Good</h1>
-                <a href="" className="btn btn-primary">Get message</a>
+                <h1>For Authorized Users</h1>
+                <a className="btn btn-primary" onClick={this.handleClicAxiosMessage}>Get message</a>
             </div>
         );
     }
 }
 
-export default Good
+export default Authorized

@@ -11,8 +11,6 @@ class User extends ActiveRecord implements IdentityInterface
     public const ROLE_MANAGER = 'manager';
     public const ROLE_VISITOR = 'visitor';
 
-//    public $firstName;
-
     public static function tableName()
     {
         return 'a_user';

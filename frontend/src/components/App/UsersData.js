@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import PROJECT_URL from '../Constants/global';
+import PROJECT_URL from '../../components/Constants/global';
 
 export default class UsersData extends React.Component {
     constructor(props) {

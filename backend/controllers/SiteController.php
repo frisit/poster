@@ -91,6 +91,7 @@ class SiteController extends CentralRestController
             }
         }
 
+        return ['message' => 'Incorrect data'];
     }
 
     /*

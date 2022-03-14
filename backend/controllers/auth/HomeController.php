@@ -30,8 +30,6 @@ class HomeController extends Controller
     {
         $result = ['message' => 'home/login'];
 
-
-
         return 'text';
     }
 
