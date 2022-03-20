@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use app\models\Login;
 use app\models\User;
 use backend\components\filters\BearerFilter;
@@ -36,8 +38,7 @@ class SiteController extends CentralRestController
 
         return $behaviors;
     }
-
-
+    
     // TODO позже рассмотреть подробнее способы использования
     public function actions()
     {
@@ -47,15 +48,13 @@ class SiteController extends CentralRestController
             ],
         ];
     }
-
-
+    
     public function actionIndex()
     {
         return $this->render('index');
     }
-
-
-    /*
+    
+    /**
     * Регистрация
     */
     public function actionSignup()
@@ -63,13 +62,14 @@ class SiteController extends CentralRestController
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $model = new User();
 
-        // если же сделать GET запрос, то в ответ придёт null, надо это указать в коде
         if (Yii::$app->request->isPost) {
-            $model->first_name = $_POST['first_name'];
-            $model->surname = $_POST['surname'];
-            $model->phone = $_POST['phone'];
-            $model->email = $_POST['email'];
-            $model->password = $_POST['password'];
+            $request = Yii::$app->request->post();
+
+            $model->first_name = $request['first_name'];
+            $model->surname = $request['surname'];
+            $model->phone = $request['phone'];
+            $model->email = $request['email'];
+            $model->password = $request['password'];
             $model->register_date = date('d-m-Y-H:i:s');
             $model->role = User::ROLE_MANAGER;
 
@@ -77,9 +77,7 @@ class SiteController extends CentralRestController
             if ($model->validate()) {
                 Yii::$app->response->setStatusCode(201);
                 $model->save();
-                $data = $model::findOne(
-                    ['phone' => $model->phone]
-                );
+                $data = $model::findOne(['phone' => $model->phone]);
                 return [
                     'id' => $data['id'],
                     'register_date' => $data['register_date']
@@ -94,13 +92,11 @@ class SiteController extends CentralRestController
         return ['message' => 'Incorrect data'];
     }
 
-    /*
+    /**
     * Авторизация
     */
     public function actionLogin()
     {
-
-
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         // инициализируется объект Login
         $model = new Login();
@@ -131,7 +127,7 @@ class SiteController extends CentralRestController
             // и значение пароля в запросе не совпадает с тем, что в БД
             // то возвращается ошибка 404 и соответствующее сообщение
             if (empty($user) || $model->password !== $user['password']) {
-                Yii::$app->response->getStatusCode(404);
+                Yii::$app->response->setStatusCode(404);
                 return 'Incorrect login or password';
             } else {
                 // теперь ищется юзер чтобы по нему сгенерировать токен и записать в БД
@@ -146,15 +142,24 @@ class SiteController extends CentralRestController
                 $user->save(false);
 
 
+                $data = new Response();
+
                 return ['token' => $user->token];
 
             }
         }
-        // TODO: дописать return до корректного отображения
+
+        return ['message' => [
+           'error' => 'Invalid parameters'
+        ]];
     }
 
-
     // если обратиться через GET запрос, то перекинет на экшен login
+
+    /**
+     *
+     * @return string[]
+     */
     public function actionLogout()
     {
         // берётся токен из заголовка
@@ -172,6 +177,7 @@ class SiteController extends CentralRestController
         // сохранение значения
         $user->save(false);
 
+        // TODO: прописать вариант сообщения, в котором в случае успеха, очистится значение куки на фронтее
         return ['message' => 'You were successfully logged out'];
     }
 

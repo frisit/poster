@@ -10,7 +10,7 @@ class Login extends ActiveRecord
 
     public static function tableName()
     {
-        return 'a_user';
+        return 'users';
     }
 
     public function rules() 

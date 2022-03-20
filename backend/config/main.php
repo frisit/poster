@@ -17,8 +17,8 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            //'identityClass' => 'common\models\User',  // закомментил из-за видео, по умолчанию обозначает модель юзера и всё, что с ней происходит
-            'identityClass' => 'app\models\User',  //в видео раскоменчено
+            //'identityClass' => 'common\models\User',  // TODO: разобраться
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
             'enableSession' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],  //закомментил из-за видео
