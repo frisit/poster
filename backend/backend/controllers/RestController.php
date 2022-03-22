@@ -5,8 +5,11 @@ namespace backend\controllers;
 use backend\components\filters\BearerFilter;
 use yii\rest\Controller;
 
-class CentralRestController extends Controller
+class RestController extends Controller
 {
+    // TODO: указать сюда все остальные behavoirs
+    // TODO: Попрбовать сделать чтобы на входе получался symfony/http/request
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();

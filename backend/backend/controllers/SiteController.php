@@ -3,14 +3,15 @@
 namespace backend\controllers;
 
 use Yii;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
+//use GuzzleHttp\Psr7\Request;
+//use GuzzleHttp\Psr7\Response;
 use app\models\Login;
 use app\models\User;
 use backend\components\filters\BearerFilter;
-use backend\controllers\CentralRestController;
+use backend\controllers\RestController;
+use yii\web\Response;
 
-class SiteController extends CentralRestController
+class SiteController extends RestController
 {
     //public $enableCsrfValidation = false;
 
@@ -30,6 +31,12 @@ class SiteController extends CentralRestController
 
             ]
         ];
+        $behaviors['ContentNegotiator'] = [
+            'class' => \yii\filters\ContentNegotiator::className(),
+            'formats' => [
+                'application/json' => Response::FORMAT_JSON,
+            ],
+        ];
         $behaviors['authenticator'] = [
             // 'class' => Bearer::className(), //работающий bearer
             'class' => BearerFilter::className(),
@@ -38,7 +45,7 @@ class SiteController extends CentralRestController
 
         return $behaviors;
     }
-    
+
     // TODO позже рассмотреть подробнее способы использования
     public function actions()
     {
@@ -48,15 +55,16 @@ class SiteController extends CentralRestController
             ],
         ];
     }
-    
+
     public function actionIndex()
     {
-        return $this->render('index');
+//        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return ['message' => 'Some text'];
     }
-    
+
     /**
-    * Регистрация
-    */
+     * Регистрация
+     */
     public function actionSignup()
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -93,8 +101,8 @@ class SiteController extends CentralRestController
     }
 
     /**
-    * Авторизация
-    */
+     * Авторизация
+     */
     public function actionLogin()
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -150,7 +158,7 @@ class SiteController extends CentralRestController
         }
 
         return ['message' => [
-           'error' => 'Invalid parameters'
+            'error' => 'Invalid parameters'
         ]];
     }
 
@@ -162,13 +170,8 @@ class SiteController extends CentralRestController
      */
     public function actionLogout()
     {
-        // берётся токен из заголовка
         $token = Yii::$app->request->headers->get('Authorization');
-
-        // обрезается строка с нуля и до 7 символа
         $token = substr($token, 7);
-
-        // поиск пользователя по токену
         $user = User::findOne(['token' => $token]);
 
         // перезапись значения токена в объекте User

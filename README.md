@@ -1,20 +1,15 @@
-## Pet project for posting content into social networks
+http://localhost:8082/ - доступ к mailhog. Пока что не работает
 
-Stack: Yii2(php 7.2), ReactJS
-Using: RestAPI, MySQL
+### poster - пет проект
+**Стек: PHP 7.2+, Yii2, MySQL 5.6+, JS, ReactJS(create-react-app), Bootstrap 4.6**
 
-In the project directory, you can run:
+Задумывался как SPA приложение для автоматического постинга в соц. сети.
+- - - 
 
-### `yarn start`
+Цели, которые ставились перед началаом разработки:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Связать frontend и backend через RestAPI
+- Сделать авторизацию с использование bearer токена
+- Обернуть авторизацию в JWT
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
-
-### `yarn build`
-
-![изображение](https://user-images.githubusercontent.com/58563551/158076794-6263d8fc-16db-4af8-8087-d6fff06cb024.png)

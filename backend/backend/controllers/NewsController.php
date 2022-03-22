@@ -32,7 +32,6 @@ class NewsController extends Controller
         ];
     }
 
-
     public function actionIndex()
     {
 //        $response = Yii::$app->getResponse();
@@ -45,13 +44,10 @@ class NewsController extends Controller
 //        Yii::info("text $request", 'dev-logs');
 
         $data = [];
-        $isPost = Yii::$app->request->isPost;
-        $isGet = Yii::$app->request->isGet;
-
-        if ($isGet) {
+        if (Yii::$app->request->isGet) {
             $data = News::find()->asArray()->all();
         }
-        if($isPost) {
+        if (Yii::$app->request->isPost) {
             $data = json_decode(\Yii::$app->request->post());
 
             Yii::info("text $data", 'dev-logs');

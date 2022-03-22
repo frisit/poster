@@ -1,0 +1,92 @@
+version: '3'
+
+networks:
+    main:
+        driver: bridge
+
+services:
+  nginx:
+    container_name: poster-nginx
+    image: nginx:stable-alpine
+# build:
+#            context: ./poster/docker/development
+#            dockerfile: docker/nginx/nginx.
+    volumes:
+      - ./backend/web:/var/www/backend.poster/web
+      - ./docker/nginx/config:/etc/nginx/conf.d
+      - ./docker/nginx/log:/var/log/nginx
+    depends_on:
+      - php-fpm
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - main
+  php-fpm:
+    container_name: poster-php-fpm
+    build:
+      context: .
+      dockerfile: ./docker/php/dockerfile
+    volumes:
+      - ./backend:/var/www/backend.poster
+    depends_on:
+      - mysql
+    networks:
+      - main
+  php-cli:
+    container_name: poster-php-cli
+    build:
+      context: .
+      dockerfile: ./docker/php/dockerfile
+    volumes:
+      - ./backend:/var/www/backend.poster
+#   - composer:/root/.composer/cache
+    depends_on:
+      - php-fpm
+      - mailer
+    networks:
+      - main
+#  postgres:
+#      container_name: poster-postgres
+#      image: postgres:11.2-alpine
+#      volumes:
+#          - poster-postgres:/var/lib/postgresql/data
+#      environment:
+#          POSTGRES_USER: app
+#          POSTGRES_PASSWORD: secret
+#          POSTGRES_DB: app
+#      ports:
+#          - "54321:5432"
+#      networks:
+#          - main
+
+  mysql:
+    container_name: poster-mysql
+    image: mysql:5.7
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    command: --innodb_use_native_aio=0
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: poster
+      MYSQL_USER: poster
+      MYSQL_PASSWORD: secret
+    networks:
+        - main
+  mailer:
+    container_name: poster-mailhog
+    image: mailhog/mailhog
+    ports:
+      - "8082:8025"
+    networks:
+      - main
+
+#volumes:
+#    poster-postgres:
+#    poster-redis:
+#    poster-queue-redis:
+#    composer:

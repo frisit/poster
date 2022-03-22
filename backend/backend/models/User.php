@@ -95,4 +95,9 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->email;
     }
 
+    public function usetToken()
+    {
+        $this->token = '';
+    }
+
 }
